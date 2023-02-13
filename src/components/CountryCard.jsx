@@ -3,7 +3,7 @@ import ListGroup from "react-bootstrap/ListGroup";
 import { LinkContainer } from "react-router-bootstrap";
 import { CardImg } from "react-bootstrap";
 
-const CountryCard = ({ country }) => {
+const CountryCard = ({ country, dispatch, addFavourites }) => {
   return (
     <div>
       <LinkContainer
@@ -11,6 +11,10 @@ const CountryCard = ({ country }) => {
         state={{ country: country }}
       >
         <Card className="h-100">
+          <i
+            class="bi bi-heart"
+            onClick={() => dispatch(addFavourites(country.name))}
+          ></i>
           <CardImg /> <img src={country.flags.png} alt="flagImage" />
           <Card.Body className="d-flex flex-column">
             <Card.Title>{country.name.common}</Card.Title>

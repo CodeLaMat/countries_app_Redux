@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Countries from "./components/Countries";
 import CountrySingle from "./components/CountrySingle";
+import Favourites from "./components/Favourites";
 import Home from "./components/Home";
 import Layout from "./pages/Layout";
 
@@ -14,7 +15,8 @@ const App = () => {
         <Route path="/" element={<Layout />}>
           <Route path="/" element={<Home />} />
           <Route path="/countries" element={<Countries />} />
-          <Route path="/countries/:single" element={<CountrySingle />} />
+          <Route path="/favourites" element={<Favourites />} />
+          <Route path="/countries/:country" element={<CountrySingle />} />
         </Route>
       </Routes>
     </BrowserRouter>

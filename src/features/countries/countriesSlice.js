@@ -24,6 +24,7 @@ export const initialiseCountries = () => {
     const countries = await countryService.getAll();
     dispatch(getCountries(countries));
     dispatch(isLoading(false));
+    //Here comes set timeout
   };
 };
 

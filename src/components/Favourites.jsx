@@ -3,20 +3,34 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
+import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { initialiseCountries } from "../features/countries/countriesSlice";
 import CountryCard from "./CountryCard";
-import { addFavourites } from "../features/countries/favoriteSlice";
+import {
+  addFavourites,
+  removeFavourites,
+} from "../features/countries/favoriteSlice";
 
-const Countries = () => {
+const Favourites = () => {
   const dispatch = useDispatch();
-  const countriesList = useSelector((state) => state.countries.countries);
+  let countriesList = useSelector((state) => state.countries.countries);
   const loading = useSelector((state) => state.countries.isLoading);
   const [search, setSearch] = useState("");
+  const [favouritesList, setFavouriteList] = useState([]);
+
+  if (favouritesList !== null) {
+    countriesList = countriesList.filter((c) =>
+      favouritesList.includes(c.name.common)
+    );
+  } else {
+    countriesList = [];
+  }
 
   useEffect(() => {
     dispatch(initialiseCountries());
+    setFavouriteList(localStorage.getItem("Favourites"));
   }, [dispatch]);
 
   if (loading) {
@@ -40,6 +54,15 @@ const Countries = () => {
       </Row>
       <Row></Row>
       <Row xs={2} md={3} lg={4} className=" g-3">
+        <Button
+          onClick={() => {
+            dispatch(removeFavourites());
+          }}
+        >
+          Clear Favourites
+        </Button>
+      </Row>
+      <Row xs={2} md={3} lg={4} className=" g-3">
         {countriesList
           .filter((country) => {
             if (
@@ -53,7 +76,11 @@ const Countries = () => {
           })
           .map((country) => (
             <Col className="mt-5">
-              <CountryCard country={country} addFavourits={addFavourites()} />
+              <CountryCard
+                country={country}
+                dispatch={dispatch}
+                addFavourites={addFavourites}
+              />
             </Col>
           ))}
       </Row>
@@ -61,4 +88,4 @@ const Countries = () => {
   );
 };
 
-export default Countries;
+export default Favourites;
