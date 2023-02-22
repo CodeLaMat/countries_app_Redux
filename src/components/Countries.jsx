@@ -1,13 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
+import { Spinner } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
 import { initialiseCountries } from "../features/countries/countriesSlice";
+
+import {
+  addFavourite,
+  removeFavourite,
+} from "../features/countries/favoriteSlice";
 import CountryCard from "./CountryCard";
-import { addFavourites } from "../features/countries/favoriteSlice";
 
 const Countries = () => {
   const dispatch = useDispatch();
@@ -20,7 +24,18 @@ const Countries = () => {
   }, [dispatch]);
 
   if (loading) {
-    return <p>Loading...</p>;
+    return (
+      <Col className="text-center m-5">
+        <Spinner
+          animation="border"
+          role="status"
+          className="center"
+          variant="info"
+        >
+          <span className="visually-hidden">Loading...</span>
+        </Spinner>
+      </Col>
+    );
   }
   return (
     <Container fluid>
@@ -38,22 +53,18 @@ const Countries = () => {
           </Form>
         </Col>
       </Row>
-      <Row></Row>
       <Row xs={2} md={3} lg={4} className=" g-3">
         {countriesList
-          .filter((country) => {
-            if (
-              country.name.common
-                .toLowerCase()
-                .includes(search.toLowerCase().trim()) ||
-              country.name.official.toLowerCase().includes(search.toLowerCase())
-            ) {
-              return country;
-            }
+          .filter((c) => {
+            return c.name.official.toLowerCase().includes(search.toLowerCase());
           })
           .map((country) => (
-            <Col className="mt-5">
-              <CountryCard country={country} addFavourits={addFavourites()} />
+            <Col className="mt-5" key={country.name.common}>
+              <CountryCard
+                country={country}
+                addFavourite={addFavourite}
+                removeFavourite={removeFavourite}
+              />
             </Col>
           ))}
       </Row>

@@ -1,28 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
-import { Button } from "react-bootstrap";
+import { Button, Spinner } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
 import { initialiseCountries } from "../features/countries/countriesSlice";
-import CountryCard from "./CountryCard";
-import {
-  addFavourites,
-  removeFavourites,
-} from "../features/countries/favoriteSlice";
+import FavouriteCard from "./CountryCard";
+import { clearFavourites } from "../features/countries/favoriteSlice";
 
 const Favourites = () => {
   const dispatch = useDispatch();
   let countriesList = useSelector((state) => state.countries.countries);
   const loading = useSelector((state) => state.countries.isLoading);
   const [search, setSearch] = useState("");
-  const [favouritesList, setFavouriteList] = useState([]);
+  const favouritesList = useSelector((state) => state.favourites.favourites);
 
   if (favouritesList !== null) {
-    countriesList = countriesList.filter((c) =>
-      favouritesList.includes(c.name.common)
+    countriesList = countriesList.filter((country) =>
+      favouritesList.includes(country.name.common)
     );
   } else {
     countriesList = [];
@@ -30,11 +26,21 @@ const Favourites = () => {
 
   useEffect(() => {
     dispatch(initialiseCountries());
-    setFavouriteList(localStorage.getItem("Favourites"));
   }, [dispatch]);
 
   if (loading) {
-    return <p>Loading...</p>;
+    return (
+      <Col className="text-center m-5">
+        <Spinner
+          animation="border"
+          role="status"
+          className="center"
+          variant="info"
+        >
+          <span className="visually-hidden">Loading...</span>
+        </Spinner>
+      </Col>
+    );
   }
   return (
     <Container fluid>
@@ -52,16 +58,17 @@ const Favourites = () => {
           </Form>
         </Col>
       </Row>
-      <Row></Row>
+
       <Row xs={2} md={3} lg={4} className=" g-3">
         <Button
           onClick={() => {
-            dispatch(removeFavourites());
+            dispatch(clearFavourites());
           }}
         >
           Clear Favourites
         </Button>
       </Row>
+
       <Row xs={2} md={3} lg={4} className=" g-3">
         {countriesList
           .filter((country) => {
@@ -75,12 +82,8 @@ const Favourites = () => {
             }
           })
           .map((country) => (
-            <Col className="mt-5">
-              <CountryCard
-                country={country}
-                dispatch={dispatch}
-                addFavourites={addFavourites}
-              />
+            <Col className="mt-5" key={country.name.common}>
+              <FavouriteCard country={country} />
             </Col>
           ))}
       </Row>

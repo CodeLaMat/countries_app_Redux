@@ -1,30 +1,16 @@
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import { LinkContainer } from "react-router-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
+// import { useDispatch, useSelector } from "react-redux";
 
-const CountryCard = ({ country, addFavourite, removeFavourite }) => {
-  const favouritesList = useSelector((state) => state.favourites.favourites);
-  const dispatch = useDispatch();
-
+const CountryCard = ({ country }) => {
   return (
-    <>
+    <div>
       <LinkContainer
         to={`/countries/${country.name.common}`}
         state={{ country: country }}
       >
         <Card className="h-100">
-          {favouritesList.includes(country.name.common) ? (
-            <i
-              className="bi bi-heart-fill text-danger m-1 p-1"
-              onClick={() => dispatch(removeFavourite(country.name.common))}
-            ></i>
-          ) : (
-            <i
-              className="bi bi-heart text-danger m-2 p-2"
-              onClick={() => dispatch(addFavourite(country.name.common))}
-            ></i>
-          )}
           <Card.Img
             src={country.flags.svg}
             variant="top"
@@ -65,7 +51,7 @@ const CountryCard = ({ country, addFavourite, removeFavourite }) => {
           </Card.Body>
         </Card>
       </LinkContainer>{" "}
-    </>
+    </div>
   );
 };
 

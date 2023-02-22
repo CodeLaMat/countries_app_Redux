@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Container, Row, Col, Image, Spinner } from "react-bootstrap";
+import { Container, Row, Col, Image, Spinner, Button } from "react-bootstrap";
 
 const CountrySingle = () => {
   const location = useLocation();
@@ -26,8 +26,6 @@ const CountrySingle = () => {
     setLoading(false);
   }, [country.capital]);
 
-  console.log(weather);
-
   if (loading) {
     return (
       <Col>
@@ -48,7 +46,7 @@ const CountrySingle = () => {
         <Col>
           <Image
             thumbnail
-            src={`https://source.unsplash.com/featured/1600x900?${country.name.common}`}
+            src={`https://source.unsplash.com/featured/1600x900?${country.capital}`}
           />
         </Col>
         <Col>
@@ -68,7 +66,13 @@ const CountrySingle = () => {
           )}{" "}
         </Col>{" "}
       </Row>
-      <Row></Row>
+      <Row>
+        <Col>
+          <Button variant="light" onClick={() => navigate("/countries")}>
+            Back to Countries
+          </Button>
+        </Col>
+      </Row>
     </Container>
   );
 };
