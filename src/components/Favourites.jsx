@@ -4,6 +4,7 @@ import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import { Button, Spinner } from "react-bootstrap";
+import { BsHeartFill, BsHeart } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import { initialiseCountries } from "../features/countries/countriesSlice";
 import FavouriteCard from "./CountryCard";

@@ -1,0 +1,35 @@
+.cardContainer {
+  background-color: rgb(255, 255, 255);
+  border-radius: 8px;
+  padding: 10px;
+  min-height: 620px;
+}
+
+.data_container {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 2fr 2fr;
+}
+
+.container_col {
+  margin: 0;
+
+  padding: 5px;
+
+  max-width: 165px;
+}
+
+.info_heading {
+  margin: 0;
+  color: black;
+  font-weight: 600;
+}
+
+.info_data {
+  margin: 5;
+  padding: 0;
+}
+
+.info_subsection {
+  margin-bottom: 8px;
+}

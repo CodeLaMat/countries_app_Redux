@@ -1,0 +1,8 @@
+.country_info_container {
+  background-color: rgb(255, 255, 255);
+  padding: 20px;
+  border-radius: 8px;
+  display: grid;
+  grid-template-columns: 4fr 2fr;
+  color: rgb(34, 35, 36);
+}

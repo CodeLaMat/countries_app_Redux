@@ -7,7 +7,6 @@ import { Login } from "./components/Login";
 import { Register } from "./components/Register";
 import Home from "./components/Home";
 import Layout from "./pages/Layout";
-
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "./auth/firebase";
 import { ProtectedRoute } from "./auth/ProtectedRoute";
