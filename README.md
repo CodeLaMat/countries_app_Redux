@@ -1,70 +1,82 @@
-# Getting Started with Create React App
+# CountriesApp
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+CountriesApp is a web application that displays information about countries, allows users to register and login to the app, create a list of favorite countries, and view detailed information and weather forecast for each country. The app is built using ReactJS, Redux, Firebase, Bootstrap, and APIs from restcountries.com and openweathermap.org.
 
-## Available Scripts
+## CountriesApp Screenshot
 
-In the project directory, you can run:
+### Getting Started
 
-### `npm start`
+#### Installation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+To install CountriesApp, follow these steps:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Clone this repository to your local machine: git clone https://github.com/CodeLaMat/countries_app_Redux.git
+- Navigate to the project directory: cd countries_app_Redux
+- Install the dependencies: npm install
+- Start the development server: npm start
+- Open the app in your browser: http://localhost:3000
 
-### `npm test`
+### API Keys
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+CountriesApp uses the following APIs:
 
-### `npm run build`
+### Firebase Authentication
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Firebase Realtime Database
+- Restcountries API
+- OpenWeatherMap API
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+You will need to obtain the necessary API keys and add them to the .env file in order for the app to function properly. You can find the necessary API keys in the respective documentation for each API.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+REACT_APP_FIREBASE_API_KEY=your_firebase_api_key
+REACT_APP_FIREBASE_AUTH_DOMAIN=your_firebase_auth_domain
+REACT_APP_FIREBASE_DATABASE_URL=your_firebase_database_url
+REACT_APP_FIREBASE_PROJECT_ID=your_firebase_project_id
+REACT_APP_FIREBASE_STORAGE_BUCKET=your_firebase_storage_bucket
+REACT_APP_FIREBASE_MESSAGING_SENDER_ID=your_firebase_messaging_sender_id
+REACT_APP_FIREBASE_APP_ID=your_firebase_app_id
+REACT_APP_WEATHER_API_KEY=your_openweathermap_api_key
 
-### `npm run eject`
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### CountriesApp allows you to:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- View a list of countries with basic information such as flag, name, population, and region.
+- Register and login to the app to access the favorite countries feature.
+- Create a list of favorite countries.
+- View detailed information about each country such as capital, languages, and currencies.
+- View a 5-day weather forecast for each country.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### To use CountriesApp:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Visit the home page to view the list of countries.
+- Click on a country to view detailed information and weather forecast.
+- - Register and login to access the favorite countries feature.
+    Click on the heart icon next to a country to add it to your favorite list.
+- Visit the favorites page to view your favorite countries.
 
-## Learn More
+### Contributing
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+#### If you would like to contribute to CountriesApp, please follow these steps:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Fork the repository
+- Create a new branch for your changes: git checkout -b my-new-feature
+- Make your changes and commit them: git commit -am 'Add some feature'
+- Push your changes to your fork: git push origin my-new-feature
+- Submit a pull request
 
-### Code Splitting
+### License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+CountriesApp is licensed under the MIT License.
 
-### Analyzing the Bundle Size
+### Acknowledgments
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+#### CountriesApp was built using the following libraries and tools:
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- ReactJS
+- Redux
+- Firebase
+- Bootstrap
+- Restcountries API
+- OpenWeatherMap API
